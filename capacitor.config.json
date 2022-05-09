@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "app-stats-foot",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
