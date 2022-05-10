@@ -1,0 +1,106 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Ajouter des joueurs</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]="joueursForm">
+    <div formArrayName="joueurs" *ngFor="let membre of joueursForm.get('joueurs')['controls']; let i = index;">
+      <div [formGroupName]="i">
+        <ion-item>
+          <ion-label color="tertiary" position="floating">Prénom</ion-label>
+          <ion-input formControlName="prenom" type='text'></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label color="tertiary" position="floating">Nom</ion-label>
+          <ion-input formControlName="nom" type='text'></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label color="tertiary" position="floating">Numéro</ion-label>
+          <ion-input formControlName="numero" type='number'></ion-input>
+        </ion-item>
+
+        <ion-radio-group formControlName="position">
+          <ion-list-header>
+            <ion-label>Position
+              <button ion-button icon-only (click)="infosPosition()">
+                <ion-icon name="information-circle"></ion-icon>
+              </button>
+            </ion-label>
+
+          </ion-list-header>
+
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label>QB</ion-label>
+                  <ion-radio slot="start" value="QB"></ion-radio>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label>LB</ion-label>
+                  <ion-radio slot="start" value="LB"></ion-radio>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label>R</ion-label>
+                  <ion-radio slot="start" value="R"></ion-radio>
+                </ion-item>
+              </ion-col>
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label>DB</ion-label>
+                  <ion-radio slot="start" value="DB"></ion-radio>
+                </ion-item>
+              </ion-col>
+
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-item>
+
+                  <ion-label>RB</ion-label>
+                  <ion-radio slot="start" value="RB"></ion-radio>
+                </ion-item>
+              </ion-col>
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label>DL</ion-label>
+                  <ion-radio slot="start" value="DL"></ion-radio>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label>OL</ion-label>
+                  <ion-radio slot="start" value="OL"></ion-radio>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+        </ion-radio-group>
+      </div>
+      <ion-button expand='block' color='danger' (click)='supprimerJoueur(i)'>
+        Retirer le joueur
+        <!-- <ion-icon name="close-circle-outline"></ion-icon> -->
+      </ion-button>
+    </div>
+    <ion-button expand='block' type="button" color='success' (click)="ajouterJoueur()">
+      Joueur supplémentaire
+      <!-- <ion-icon name="add-circle-outline"></ion-icon> -->
+    </ion-button>
+    <ion-button color='tertiary' type="submit" expand="block" (click)='creerJoueurs()' [disabled]='!joueursForm.valid'>Confirmer</ion-button>
+  </form>
+
+</ion-content>

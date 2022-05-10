@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Nouvelle partie</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-item>
+    <ion-label color='tertiary'>Équipe: </ion-label>
+    <ion-input disabled> {{equipe.niveau + ' ' + equipe.annee }}</ion-input>
+  </ion-item>
+  <form [formGroup]='partieForm'>
+    <ion-item>
+      <ion-label color='tertiary' position='floating'>Adversaire</ion-label>
+      <ion-input formControlName='adversaire' type='text'></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color='tertiary' position='floating'>Date</ion-label>
+      <ion-input formControlName='date' type='date'></ion-input>
+    </ion-item>
+
+    <ion-button color='tertiary' type='submit' expand='block' (click)='ajouterPartie()' [disabled]='!partieForm.valid'>Ajouter la partie</ion-button>
+  </form>
+</ion-content>

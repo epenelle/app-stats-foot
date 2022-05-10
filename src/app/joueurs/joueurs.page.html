@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Joueurs</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-button color='success' id='ajouterJoueurButton' (click)='ajouterJoueursPresentModal()'>Ajouter des joueurs</ion-button>
+  <ion-searchbar showCancelButton="always" placeholder="Filtrer" type="text" debounce="500" (ionChange)="filterJoueurs($event)"></ion-searchbar>
+  <ion-grid>
+    <ion-row class='headerRow'>
+      <ion-col size="1">#</ion-col>
+      <ion-col size="2">Pos</ion-col>
+      <ion-col size="4.5">Prénom</ion-col>
+      <ion-col size="4.5">Nom</ion-col>
+    </ion-row>
+
+    <ion-row button (click)='infosJoueursPresentModal(joueur)' class='bodyRow' *ngFor='let joueur of joueursDisplay'>
+      <ion-col size="1">{{ joueur.numero }}</ion-col>
+      <ion-col size="2">{{ joueur.position }}</ion-col>
+      <ion-col size="4.5">{{ joueur.prenom }}</ion-col>
+      <ion-col size="4.5">{{ joueur.nom }}</ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

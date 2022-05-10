@@ -1,0 +1,107 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ 'vs. ' + partie.adversaire + ' ' + partie.date }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <ion-segment value="offense" (ionChange)="possessionChanged($event)" swipe-gesture="false">
+    <ion-segment-button value="offense">
+      <ion-label>Offense</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="defense">
+      <ion-label>Defense</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="unitesSpeciales">
+      <ion-label>Unités Spéciales</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- Offense -->
+  <ion-segment *ngIf="possessionFlag === 'offense'" value="courseOffense" (ionChange)="typeJeuChanged($event)" scrollable mode="md">
+    <ion-grid>
+      <ion-row>
+        <ion-segment-button value="courseOffense">
+          <ion-label>Course</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="passeOffense">
+          <ion-label>Passe</ion-label>
+        </ion-segment-button>
+
+        <ion-segment-button value="interceptionOffense">
+          <ion-label>Interception</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="fumbleOffense">
+          <ion-label>Fumble</ion-label>
+        </ion-segment-button>
+      </ion-row>
+    </ion-grid>
+  </ion-segment>
+
+  <!-- Defense -->
+  <ion-segment *ngIf="possessionFlag === 'defense'" value="plaque" (ionChange)="typeJeuChanged($event)" scrollable mode="md">
+    <ion-grid>
+      <ion-row>
+        <ion-segment-button value="plaque">
+          <ion-label>Plaqué</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="passeRabattue">
+          <ion-label>Passe rabattue</ion-label>
+        </ion-segment-button>
+
+        <ion-segment-button value="interceptionDefense">
+          <ion-label>Interception</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="fumbleDefense">
+          <ion-label>Fumble</ion-label>
+        </ion-segment-button>
+      </ion-row>
+    </ion-grid>
+  </ion-segment>
+
+  <!-- Unites speciales -->
+  <ion-segment *ngIf="possessionFlag === 'unitesSpeciales'" value="converti" (ionChange)="typeJeuChanged($event)" scrollable mode="md">
+    <ion-grid>
+      <ion-row>
+        <ion-segment-button value="converti">
+          <ion-label>Converti</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="placement">
+          <ion-label>Placement</ion-label>
+        </ion-segment-button>
+
+        <ion-segment-button value="degagement">
+          <ion-label>Dégagement</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="botteEnvoie">
+          <ion-label>Botté envoi</ion-label>
+        </ion-segment-button>
+
+        <ion-segment-button value="retourDegagement">
+          <ion-label>Retour de dégagement</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="retourBotteEnvoie">
+          <ion-label>Retour de botté envoi</ion-label>
+        </ion-segment-button>
+      </ion-row>
+    </ion-grid>
+  </ion-segment>
+
+  <form [formGroup]='courseForm' *ngIf="typeJeuFlag === 'course'">
+
+    <ion-item>
+      <ion-label>Joueur</ion-label>
+      <ion-select [(ngModel)]="listeJoueurs" name="joueur">
+        <ion-select-option id="1" *ngFor="let joueur of listeJoueurs" [value]="joueur.idJoueur">{{joueur.prenom + ' ' + joueur.nom}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </form>
+  <ion-button expand='block' color='danger' (click)='confirmerSuppressionPartie()'>
+    Supprimer la partie
+  </ion-button>
+</ion-content>

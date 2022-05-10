@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Équipes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar showCancelButton="always" placeholder="Filtrer" type="text" debounce="500" (ionChange)="filtrerEquipes($event)"></ion-searchbar>
+  <ion-list id='listeEquipes'>
+    <ion-item button (click)="goToEquipeInfos(equipe)" *ngFor="let equipe of equipesDisplay;">
+      <ion-label>{{ equipe.niveau + ' ' + equipe.annee}}</ion-label>
+      <!-- <ion-card>
+        <ion-card-header> -->
+      <!-- <ion-card-title>{{equipe.nomEquipe}}</ion-card-title> -->
+      <!-- </ion-card-header> -->
+      <!-- </ion-card> -->
+    </ion-item>
+  </ion-list>
+
+</ion-content>
